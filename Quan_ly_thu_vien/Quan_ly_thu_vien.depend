@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1700907470 source:h:\quan_ly_thu_vien\main.cpp
+	<iostream>
+	<string>
+	<vector>
+
