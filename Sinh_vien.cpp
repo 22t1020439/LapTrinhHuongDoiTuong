@@ -19,6 +19,9 @@ class Nguoi{
         string getNgay_sinh(){
             return Ngay_sinh;
         }
+        virtual double getGpa(){
+            return 0;
+        }
         void setHo_dem(string Ho_dem){
             this->Ho_dem = Ho_dem;
         }
@@ -61,7 +64,7 @@ void chuanhoa(string &Ten, string &Ho_dem){
     Ten = v[v.size() - 1];
 
 }
-
+//01/1/2004
 string chuanhoa2(string &Ngay_sinh){
     if(Ngay_sinh[2] != '/') Ngay_sinh = '0' + Ngay_sinh;
     if(Ngay_sinh[5] != '/') Ngay_sinh.insert(Ngay_sinh.begin() + 3, '0');
@@ -169,12 +172,19 @@ Sinh_vien::~Sinh_vien(){
 
 class Thu_vien{
     private:
-        vector<Sinh_vien*> ds_Sinhvien;
+        vector<Nguoi*> ds_Sinhvien;
     public:
         void Menu();
 };
 
-bool cmp(Sinh_vien* a, Sinh_vien *b){
+//bool cmp(Sinh_vien* a, Sinh_vien *b){
+//    if(a->getTen() != b->getTen()){
+//        return a->getTen() < b->getTen();
+//    }
+//    return a->getHo_dem() < b->getHo_dem();
+//}
+
+bool cmp(Nguoi* a, Nguoi *b){
     if(a->getTen() != b->getTen()){
         return a->getTen() < b->getTen();
     }
@@ -191,8 +201,9 @@ void Thu_vien::Menu(){
         cout << "\t3. Sap Xep Tang Dan." << endl;
         cout << "\t4. Xuat Sinh Vien(Gpa cao nhat): " << endl;
         cout << ">>>Nhap: "; cin >> lc;
+        Nguoi *x = new Nguoi;
         if(lc == 1){
-            Sinh_vien *x = new Sinh_vien;
+            x = new Sinh_vien;
             x->Nhap();
             ds_Sinhvien.push_back(x);
         }
@@ -210,7 +221,19 @@ void Thu_vien::Menu(){
             cout << "DANH SACH SINH VIEN DA DUOC SAP XEP!!!!" << endl;
             system("pause");
         }
-
+        else if (lc == 4){
+            double maxx = 0;
+            for (int i = 0; i < ds_Sinhvien.size(); i++){
+                maxx = max(maxx, ds_Sinhvien[i]->getGpa());
+            }
+            cout << "DANH SACH SINH VIEN GPA CAO NHAT!!!" << endl;
+            for (int i = 0; i < ds_Sinhvien.size(); i++){
+                if(ds_Sinhvien[i]->getGpa() == maxx){
+                    ds_Sinhvien[i]->Xuat(); cout << endl;
+                }
+            }
+            system("pause");
+        }
     }
 }
 
