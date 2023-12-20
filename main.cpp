@@ -1,170 +1,184 @@
-
 #include<bits/stdc++.h>
 using namespace std;
 
-class Canbo{
+const int Nam_ht = 2023;
+
+class Vehicle{
     private:
-        string Ma_cb;
-        string Ho_ten;
-        string Gioi_tinh;
+        string Ma_pt;
+        string Ten_pt;
+        int Nam_sx;
+        float Gia_ban;
     public:
-        Canbo();
-        Canbo(string Ma_cb, string Ho_ten, string Gioi_tinh);
-        Canbo(const Canbo& other);
-        string getMa_cb(){
-            return Ma_cb;
+        Vehicle();
+        Vehicle(string Ma_pt, string Ten_pt, int Nam_sx, float Gia_ban);
+        Vehicle(const Vehicle& other);
+        string getMa_pt(){ return Ma_pt; }
+        string getTen_pt(){ return Ten_pt; }
+        int getNam_sx(){ return Nam_sx; }
+        float getGia_ban(){ return Gia_ban; }
+        void setMa_pt(string Ma_pt){
+            this->Ma_pt = Ma_pt;
         }
-        string getHo_ten(){
-            return Ho_ten;
+        void setTen_pt(string Ten_pt){
+            this->Ten_pt = Ten_pt;
         }
-        string getGioi_tinh(){
-            return Gioi_tinh;
+        void setNam_sx(int Nam_sx){
+            this->Nam_sx = Nam_sx;
         }
-        void setMa_cb(string Ma_cb){
-            this->Ma_cb = Ma_cb;
-        }
-        void setHo_ten(string Ho_ten){
-            this->Ho_ten = Ho_ten;
-        }
-        void setGioi_tinh(string Gioi_tinh){
-            this->Gioi_tinh = Gioi_tinh;
+        void setGia_ban(float Gia_ban){
+            this->Gia_ban = Gia_ban;
         }
         void Input();
         void Output();
-        ~Canbo();
+        ~Vehicle();
 };
 
-Canbo::Canbo(){
-    Ma_cb = Ho_ten = Gioi_tinh = "";
+
+Vehicle::Vehicle(){
+    Ma_pt = Ten_pt = "";
+    Gia_ban = Nam_sx = 0;
 }
 
-Canbo::Canbo(string Ma_cb, string Ho_ten, string Gioi_tinh){
-    this->Ma_cb = Ma_cb;
-    this->Ho_ten = Ho_ten;
-    this->Gioi_tinh = Gioi_tinh;
+Vehicle::Vehicle(string Ma_pt, string Ten_pt, int Nam_sx, float Gia_ban){
+    this->Ma_pt = Ma_pt;
+    this->Ten_pt = Ten_pt;
+    this->Nam_sx = Nam_sx;
+    this->Gia_ban = Gia_ban;
 }
 
-Canbo::Canbo(const Canbo& other){
-    Ma_cb = other.Ma_cb;
-    Ho_ten = other.Ho_ten;
-    Gioi_tinh = other.Gioi_tinh;
+Vehicle::Vehicle(const Vehicle& other){
+    this->Ma_pt = other.Ma_pt;
+    this->Ten_pt = other.Ten_pt;
+    this->Nam_sx = other.Nam_sx;
+    this->Gia_ban = other.Gia_ban;
 }
 
-void Canbo::Input(){
-    cout << "Nhap Ma Can Bo: "; cin >> Ma_cb;
+void Vehicle::Input(){
+    cout << "Nhap Ma Phuong Tien: "; cin >> Ma_pt;
     cin.ignore();
-    cout << "Nhap Ho Ten: "; getline(cin, Ho_ten);
-    cout << "Nhap Gioi Tinh: "; cin >> Gioi_tinh;
+    cout << "Nhap Ten Phuong Tien: "; getline(cin, Ten_pt);
+    cout << "Nhap Nam san xuat: "; cin >> Nam_sx;
+    cout << "Nhap Gia san pham: "; cin >> Gia_ban;
 }
 
-void Canbo::Output(){
-    cout << Ma_cb << " | " << Ho_ten << " | " << Gioi_tinh;
+
+void Vehicle::Output(){
+    cout << Ma_pt << " | " << Ten_pt << " | " << Nam_sx << " | " << Gia_ban;
 }
 
-Canbo::~Canbo(){
-    Ma_cb = Ho_ten = Gioi_tinh = "";
+Vehicle::~Vehicle(){
+    Ma_pt = Ten_pt = "";
+    Gia_ban = Nam_sx = 0;
 }
 
-struct Time{
-    int Ngay;
-    int Thang;
-    int Nam;
-};
-
-class Congnhan : public Canbo{
+class Car : public Vehicle{
     private:
-        int Bac_cb;
-        int So_ngay_lv;
-        int Ngay_ki_hop_dong;
+        int So_cn;
+        float Dung_tich;
+        string Nhien_lieu;
     public:
-        Congnhan() : Canbo(){
-            Bac_cb = So_ngay_lv = 0;
-            Ngay_ki_hop_dong = 0;
+        Car(): Vehicle(){
+            So_cn = Dung_tich = 0;
+            Nhien_lieu = "";
         }
-        Congnhan(string Ma_cb, string Ho_ten, string Gioi_tinh, int Bac_cb, int So_ngay_lv, int Ngay_ki_hop_dong) : Canbo(Ma_cb, Ho_ten, Gioi_tinh){
-            this->Bac_cb = Bac_cb;
-            this->So_ngay_lv = So_ngay_lv;
-            this->Ngay_ki_hop_dong = Ngay_ki_hop_dong;
+        Car(string Ma_pt, string Ten_pt, int Nam_sx, float Gia_ban, int So_cn, float Dung_tich, string Nhien_lieu) : Vehicle(Ma_pt, Ten_pt, Nam_sx, Gia_ban){
+            this->So_cn = So_cn;
+            this->Dung_tich = Dung_tich;
+            this->Nhien_lieu = Nhien_lieu;
         }
-        int getBac_cb(){
-            return Bac_cb;
+        Car(Car& other){
+            this->setMa_pt(other.getMa_pt());
+            this->setTen_pt(other.getTen_pt());
+            this->setNam_sx(other.getNam_sx());
+            this->setGia_ban(other.getGia_ban());
+            this->So_cn = other.So_cn;
+            this->Dung_tich = other.Dung_tich;
+            this->Nhien_lieu = other.Nhien_lieu;
         }
-        int getSo_ngay_lv(){
-            return So_ngay_lv;
+        int getSo_cn(){
+            return So_cn;
         }
-        int getNgay_ki_hop_dong(){
-            return Ngay_ki_hop_dong;
+        float getDung_tich(){
+            return Dung_tich;
         }
-        float Tien_luong(){
-            return getSo_ngay_lv()*(300000 + (getBac_cb() - 1)*50000);
+        string getNhien_lieu(){
+            return Nhien_lieu;
         }
-        void setBac_cb(int Bac_cb){
-            this->Bac_cb = Bac_cb;
+        float Gia_tri_con_lai(){
+            float Gia_tri = (Nhien_lieu == "Xang") ? getGia_ban()*(1 - (Nam_ht-getNam_sx())*0.1) : getGia_ban()*(1 - (Nam_ht-getNam_sx())*0.05);
+            return (Gia_tri >= 0) ? Gia_tri : 0;
         }
-        void setSo_ngay_lv(int So_ngay_lv){
-            this->So_ngay_lv = So_ngay_lv;
+        void setSo_cn(int So_cn){
+            this->So_cn = So_cn;
         }
-        void setNgay_ki_hop_dong(int Ngay_ki_hop_dong){
-            this->Ngay_ki_hop_dong = Ngay_ki_hop_dong;
+        void setDung_tich(float Dung_tich){
+            this->Dung_tich = Dung_tich;
         }
-        void Input(){
-            Canbo::Input();
-            cout << "Nhap Bac Can Bo(1-3): "; cin >> Bac_cb;
-            cout << "Nhap So Ngay Lam Viec: "; cin >> So_ngay_lv;
-            Time Tg;
-            cout << "Nhap Ngay ki hop dong(ss hh yyyy): "; cin >> Tg.Ngay >> Tg.Thang >> Tg.Nam;
-            Ngay_ki_hop_dong = Tg.Nam*420 + Tg.Thang*32 + Tg.Ngay;
+        void setNhien_lieu(string Nhien_lieu){
+            this->Nhien_lieu = Nhien_lieu;
         }
-        void Output(){
-            Canbo::Output();
-            Time Tg;
-            Tg.Nam = Ngay_ki_hop_dong/420; Ngay_ki_hop_dong %= 420;
-            Tg.Thang = Ngay_ki_hop_dong/32; Ngay_ki_hop_dong %= 32;
-            Tg.Ngay = Ngay_ki_hop_dong;
-            cout << " | " << Bac_cb << " | " << So_ngay_lv << " | " << Tg.Ngay << "/" << Tg.Thang << "/" << Tg.Nam  << " | " << setprecision(0) << fixed << Tien_luong();
+        void Input();
+        void Output();
+        ~Car(){
+            setMa_pt("");
+            setTen_pt("");
+            setNam_sx(0);
+            setGia_ban(0);
+            So_cn = Dung_tich = 0;
+            Nhien_lieu = "";
         }
-        ~Congnhan(){
-            setMa_cb("");
-            setHo_ten("");
-            setGioi_tinh("");
-            Bac_cb = So_ngay_lv = Ngay_ki_hop_dong = 0;
-        }
-        friend bool operator > (Congnhan& a, Congnhan& b);
+        friend bool operator > (Car& a, Car& b);
 };
 
-bool operator > (Congnhan& a, Congnhan& b){
-    return a.getNgay_ki_hop_dong() > b.getNgay_ki_hop_dong();
+bool operator > (Car& a, Car& b){
+    return a.getGia_ban() > b.getGia_ban();
 }
 
-bool cmp(Congnhan *a, Congnhan *b){
-    return a->getNgay_ki_hop_dong() > b->getNgay_ki_hop_dong();
+void Car::Input(){
+    Vehicle::Input();
+    cout << "Nhap so cho ngoi: "; cin >> So_cn;
+    cout << "Nhap Dung Tich(cm^3): "; cin >> Dung_tich;
+    cin.ignore();
+    cout << "Nhap Nhien lieu: "; getline(cin, Nhien_lieu);
+}
+
+void Car::Output(){
+    Vehicle::Output();
+    cout << " | " << So_cn << " | " << Dung_tich << " | " << Nhien_lieu << " || " << Gia_tri_con_lai();
+}
+
+bool cmp(Car *x, Car *y){
+    return y->getGia_ban() > x->getGia_ban();
 }
 
 int main(){
-    vector<Congnhan*> ds_Congnhan;
-    int n; cout << "Nhap n doi tuong Can Bo: "; cin >> n;
-    for(int i = 0; i < n; i++){
-        cout << "-->>Nhap Can Bo " << i + 1 << ":" << endl;
-        Congnhan *x = new Congnhan;
+    vector<Car*> ds_car;
+    int n;
+    cout << "Nhap n doi tuong o to: "; cin >> n;
+    for (int i = 0; i < n; i++){
+        cout << "-->NHAP O TO " << i + 1 << ":" << endl;
+        Car *x = new Car;
         x->Input();
-        ds_Congnhan.push_back(x);
+        ds_car.push_back(x);
     }
-    sort(ds_Congnhan.begin(), ds_Congnhan.end(), cmp);
-    cout << endl << "DANH SACH CAN BO" << endl;
-    vector<Congnhan*> ds_CongnhanNAM;
-    float TienLuongCaoNhat;
-    for(int i = 0; i < ds_Congnhan.size(); i++){
-        ds_Congnhan[i]->Output(); cout << endl;
-        if(ds_Congnhan[i]->getGioi_tinh() == "Nam"){
-            ds_CongnhanNAM.push_back(ds_Congnhan[i]);
-            TienLuongCaoNhat = max(TienLuongCaoNhat, ds_Congnhan[i]->Tien_luong());
-        }
+
+    sort(ds_car.begin(), ds_car.end(), cmp);
+
+    float Tong_gia_ban, Tong_gia_tri_con_lai;
+    cout << endl << "DANH SACH O TO" << endl;
+    for (int i = 0; i < ds_car.size(); i++){
+        ds_car[i]->Output(); cout << endl;
+        Tong_gia_ban += ds_car[i]->getGia_ban();
+        Tong_gia_tri_con_lai += ds_car[i]->Gia_tri_con_lai();
     }
-    cout << endl << "DANH SACH CAN BO(NAM) CO TIEN LUONG CAO NHAT" << endl;
-    for(int i = 0; i < ds_CongnhanNAM.size(); i++){
-        if(ds_CongnhanNAM[i]->Tien_luong() == TienLuongCaoNhat){
-            ds_CongnhanNAM[i]->Output(); cout << endl;
-        }
-    }
+
+    cout << endl << "Xe o to(gia tri thap nhat): " << endl;
+    ds_car[0]->Output(); cout << endl << endl;
+
+    cout << "TONG GIA BAN: " << fixed << Tong_gia_ban << endl;
+    cout << "TONG GIA TRI CON LAI: " << fixed << Tong_gia_tri_con_lai << endl;
+    cout << "GIA TRI TRUNG BINH: " << fixed << Tong_gia_ban/ds_car.size() << endl;
+    cout << "GIA TRI TRUNG BINH CON LAI: " << fixed << Tong_gia_tri_con_lai/ds_car.size() << endl;
     return 0;
 }
